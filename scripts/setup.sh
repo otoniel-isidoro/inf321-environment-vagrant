@@ -27,29 +27,34 @@ echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-se
 sudo apt-get -y install oracle-java8-installer
 
 echo ">>>>>>>>>>>>> Download ECLIPSE"
-cd /home/vagrant && curl http://ftp.fau.de/eclipse/technology/epp/downloads/release/neon/R/eclipse-android-neon-R-incubation-linux-gtk-x86_64.tar.gz -O --retry 999 --retry-max-time 0 -C -
-cd /home/vagrant && tar -zxvf eclipse-android-neon-R-incubation-linux-gtk-x86_64.tar.gz
+cd /home/vagrant && curl http://www.students.ic.unicamp.br/~otoniel/downloads/inf321_lab01/eclipse_android_inf321_lab01.zip -O --progress-bar --retry 999 --retry-max-time 0 -C -
+cd /home/vagrant && unzip eclipse_android_inf321_lab01.zip
+sudo chown vagrant. eclipse -R
 
 echo ">>>>>>>>>>>>> Download yEd"
-cd /home/vagrant && curl https://www.yworks.com/resources/yed/demo/yEd-3.16.1.zip -o yed.zip --retry 999 --retry-max-time 0 -C -
+cd /home/vagrant && curl https://www.yworks.com/resources/yed/demo/yEd-3.16.1.zip -o yed.zip --progress-bar --retry 999 --retry-max-time 0 -C - 
 cd /home/vagrant && unzip yed.zip
+sudo chown vagrant. yed-3.16.1 -R 
  
 echo ">>>>>>>>>>>>> Download android tools"
 ANDROID_SDK_FILENAME=android-sdk_r24.4.1-linux.tgz
 ANDROID_SDK=https://dl.google.com/android/$ANDROID_SDK_FILENAME
 cd /home/vagrant
-curl $ANDROID_SDK -O --retry 999 --retry-max-time 0 -C -
-tar -xzvf $ANDROID_SDK_FILENAME
-sudo chown -R vagrant android-sdk-linux/
-rm $ANDROID_SDK_FILENAME
- 
-echo "export ANDROID_HOME=/home/vagrant/android-sdk-linux" >> /home/vagrant/.bashrc
+curl $ANDROID_SDK -O --progress-bar --retry 999 --retry-max-time 0 -C -
+sudo tar -xzvf $ANDROID_SDK_FILENAME -C /opt/
+cd /opt/
+sudo chown -R vagrant. android-sdk-linux/
+
+echo "export ANDROID_HOME=/opt/android-sdk-linux" >> /etc/profile
+echo "export ANDROID_HOME=/opt/android-sdk-linux" >> /home/vagrant/.bashrc
+echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> /etc/profile
 echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" >> /home/vagrant/.bashrc
-echo "PATH=\$PATH:/home/vagrant/android-sdk-linux/tools:/home/vagrant/android-sdk-linux/platform-tools" >> /home/vagrant/.bashrc
-echo "Install SDK Android 24"
+echo "export PATH=\$PATH:\$JAVA_HOME/bin:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools" >> /home/vagrant/.bashrc
+echo "export PATH=\$PATH:\$JAVA_HOME/bin:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools" >> /etc/profile
+echo "Install SDK Android"
 expect -c '
 set timeout -1   ;
-spawn /home/vagrant/android-sdk-linux/tools/android update sdk -u --all --filter tools,platform-tools,build-tools-23.0.1,android-23,sys-img-armeabi-v7a-android-23
+spawn /opt/android-sdk-linux/tools/android update sdk -u --all --filter tools,platform-tools,build-tools-23.0.1,android-23
 expect { 
     "Do you accept the license" { exp_send "y\r" ; exp_continue }
     eof
@@ -61,14 +66,14 @@ echo "End installation of android tools"
 
 echo ">>>>>>>>> Enable USB devices"
 # Add New Devices to the 51.android rules
-sudo cp /vagrant/android.rules /etc/udev/rules.d/51-android.rules
+sudo cp /vagrant/51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644   /etc/udev/rules.d/51-android.rules
 sudo chown root. /etc/udev/rules.d/51-android.rules
 sudo service udev restart
 sudo killall adb
 
 echo ">>>>>>>>>>>>> Installing Appium"
-curl -sL https://deb.nodesource.com/setup_0.12 --retry 999 --retry-max-time 0 -C - | bash - \
+curl -sL https://deb.nodesource.com/setup_0.12 --progress-bar --retry 999 --retry-max-time 0 -C - | bash - \
   && apt-get -qqy install \
     nodejs \
     python \
@@ -78,7 +83,9 @@ curl -sL https://deb.nodesource.com/setup_0.12 --retry 999 --retry-max-time 0 -C
 
 APPIUM_VERSION=1.5.3
 sudo mkdir /home/vagrant/appium && cd /home/vagrant/appium
+sudo npm install appium-doctor && sudo ln -s /home/vagrant/appium/node_modules/.bin/appium-doctor /usr/bin/appium-doctor
 sudo npm install appium@$APPIUM_VERSION && sudo ln -s /home/vagrant/appium/node_modules/.bin/appium /usr/bin/appium
 
+sudo cp /vagrant/xfce4-panel.xml /home/vagrant/.config/xfce4/xfconf/xfce-perchannel-xml/
 echo "Finished. REBOOTING!"
 sudo reboot 0
