@@ -10,10 +10,12 @@ Vagrant.configure(2) do |config|
     v.memory = 2048
     v.customize ["modifyvm", :id, "--usb", "on"]
     v.customize ["modifyvm", :id, "--usbehci", "on"]
+ 
     # fix for slow network
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-    v.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    # v.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    v.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
   end
 
   config.vm.provision "file", source: ".bash_profile", destination: "~/.bash_profile"
