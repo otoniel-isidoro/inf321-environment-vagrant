@@ -17,7 +17,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "file", source: ".bash_profile", destination: "~/.bash_profile"
-  config.vm.provision "file", source: "51-android.rules", destination: "/etc/udev/rules.d/51-android.rules"
   config.vm.provision "file", source: "xfce4.zip", destination: "~/.config/xfce4.zip"
 
   config.vm.provision "shell", path: "scripts/setup.sh"

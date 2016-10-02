@@ -66,6 +66,7 @@ echo "End installation of android tools"
 
 
 echo ">>>>>>>>> Enable USB devices"
+sudo cp /vagrant/51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644   /etc/udev/rules.d/51-android.rules
 sudo chown root. /etc/udev/rules.d/51-android.rules
 sudo service udev restart
