@@ -6,6 +6,7 @@ sudo echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 sudo echo "LC_CTYPE=en_US.UTF-8" >> /etc/environment
 
 echo ">>>>>>>>>>>>> Upgrading and installing libs and add repositories"
+sudo apt-get install -y linux-headers-$(uname -r) build-essential dkms
 sudo dpkg --add-architecture i386
 sudo apt-get upgrade 
 sudo add-apt-repository -y ppa:webupd8team/java
@@ -27,12 +28,12 @@ echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-se
 sudo apt-get -y install oracle-java8-installer > /home/vagrant/java8_install.log
 
 echo ">>>>>>>>>>>>> Download ECLIPSE"
-cd /home/vagrant && curl http://www.students.ic.unicamp.br/~otoniel/downloads/inf321_lab01/eclipse_android_inf321_lab01.zip -O --retry 999 --retry-max-time 0 -C -
+cd /home/vagrant && curl http://www.students.ic.unicamp.br/~otoniel/downloads/inf321_lab01/eclipse_android_inf321_lab01.zip -O --retry 999 --retry-max-time 0 -C - >> /home/vagrant/downloads.log
 cd /home/vagrant && unzip eclipse_android_inf321_lab01.zip
 sudo chown vagrant. eclipse -R
 
 echo ">>>>>>>>>>>>> Download yEd"
-cd /home/vagrant && curl https://www.yworks.com/resources/yed/demo/yEd-3.16.1.zip -o yed.zip --retry 999 --retry-max-time 0 -C - 
+cd /home/vagrant && curl https://www.yworks.com/resources/yed/demo/yEd-3.16.1.zip -o yed.zip --retry 999 --retry-max-time 0 -C - >> /home/vagrant/downloads.log
 cd /home/vagrant && unzip yed.zip
 sudo chown vagrant. yed-3.16.1 -R 
  
@@ -40,7 +41,7 @@ echo ">>>>>>>>>>>>> Download android tools"
 ANDROID_SDK_FILENAME=android-sdk_r24.4.1-linux.tgz
 ANDROID_SDK=https://dl.google.com/android/$ANDROID_SDK_FILENAME
 cd /home/vagrant
-curl $ANDROID_SDK -O --retry 999 --retry-max-time 0 -C -
+curl $ANDROID_SDK -O --retry 999 --retry-max-time 0 -C - >> /home/vagrant/downloads.log
 sudo tar -xzvf $ANDROID_SDK_FILENAME -C /opt/
 cd /opt/
 sudo chown -R vagrant. android-sdk-linux/
