@@ -2,10 +2,10 @@
 
 #### PRÉ-REQUISITOS
 
-  * Instalar VirtualBox
-  * Instalar VirtualBox Extension Pack
-  * Instalar Vagrant
-  * Intalar Vagrant plugin VBOX-Guest
+  * Instalar [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+  * Instalar [VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
+  * Instalar [Vagrant](https://www.vagrantup.com/downloads.html)
+  * Intalar [Vagrant plugin VBOX-Guest](https://github.com/dotless-de/vagrant-vbguest)
 
 #### Iniciar ambiente
 
