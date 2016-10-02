@@ -15,11 +15,11 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     v.customize ["modifyvm", :id, "--nictype1", "virtio"]
   end
-  
+
   config.vm.provision "file", source: ".bash_profile", destination: "~/.bash_profile"
-  
+  config.vm.provision "file", source: "51-android.rules", destination: "/etc/udev/rules.d/51-android.rules"
+  config.vm.provision "file", source: "xfce4.zip", destination: "~/.config/xfce4.zip"
+
   config.vm.provision "shell", path: "scripts/setup.sh"
 
-    
-   
 end

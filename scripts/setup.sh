@@ -66,8 +66,6 @@ echo "End installation of android tools"
 
 
 echo ">>>>>>>>> Enable USB devices"
-# Add New Devices to the 51.android rules
-sudo cp /vagrant/51-android.rules /etc/udev/rules.d/51-android.rules
 sudo chmod 644   /etc/udev/rules.d/51-android.rules
 sudo chown root. /etc/udev/rules.d/51-android.rules
 sudo service udev restart
@@ -87,7 +85,6 @@ sudo mkdir /home/vagrant/appium && cd /home/vagrant/appium
 sudo npm install appium-doctor && sudo ln -s /home/vagrant/appium/node_modules/.bin/appium-doctor /usr/bin/appium-doctor
 sudo npm install appium@$APPIUM_VERSION && sudo ln -s /home/vagrant/appium/node_modules/.bin/appium /usr/bin/appium
 
-sudo cp /vagrant/xfce4.zip /home/vagrant/.config/
 cd /home/vagrant/.config
 sudo unzip xfce4.zip
 sudo chown -R vagrant. xfce4 
