@@ -31,6 +31,15 @@
 
         `vagrant plugin install vagrant-vbguest`
 
+      * No linux para o virtualbox reconhecer os devices conectados via usb é necessário adicionar o usuario ao grupo `vboxusers`:
+
+        `sudo usermod -a -G vboxusers <nome do usuario>`
+
+        Para verificar se o usuario foi adicionado ao grupo:
+
+         `groups <nome do usuario>`
+        
+        Se o grupo vboxusers aparecer na listagem então a configuração está correta.
 
 #### Iniciar ambiente
 
