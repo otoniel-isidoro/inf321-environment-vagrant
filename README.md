@@ -34,12 +34,12 @@
 
 #### Iniciar ambiente
 
-  vagrant up
+  `vagrant up`
 
 #### Parar ambiente
 
-  vagrant halt
+  `vagrant halt`
 
 #### Apagar ambiente
 
-  vagrant destroy
+  `vagrant destroy`
