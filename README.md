@@ -40,6 +40,7 @@
          `groups <nome do usuario>`
         
         Se o grupo vboxusers aparecer na listagem então a configuração está correta.
+        Após adicionar o usuário é necessario reiniciar o linux.
 
 #### Iniciar ambiente
 
