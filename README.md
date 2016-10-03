@@ -11,7 +11,7 @@
 
       * Instalar [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 
 
-          `choco install virtualbox`
+          `choco install virtualbox -version 5.1.4.110228`
       
       * Instalar [VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads) 
 
