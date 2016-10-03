@@ -15,7 +15,7 @@ echo ">>>>>>>>>>>>> install extra packages "
 sudo apt-get install -y qt4-qtconfig xinit
 sudo apt-get install -y xfce4 libncurses5:i386 libstdc++6:i386 zlib1g:i386
 sudo apt-get install -y curl virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
-sudo apt-get install -y unzip firefox leafpad expect ant python-software-properties terminator
+sudo apt-get install -y unzip firefox leafpad expect ant python-software-properties terminator maven
 echo ">>>>>>>>>>>>> fix dictionaries package"
 sudo /usr/share/debconf/fix_db.pl
 # diff -u /var/cache/debconf/config.dat{-old,}    | grep ^[+-]Name
