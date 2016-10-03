@@ -15,7 +15,7 @@
       
       * Instalar [VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads) 
 
-          `choco install VirtualBox.ExtensionPack`
+          `choco install virtualbox.extensionpack -version 5.1.4.110228`
       
       * Instalar [Vagrant](https://www.vagrantup.com/downloads.html) 
 
