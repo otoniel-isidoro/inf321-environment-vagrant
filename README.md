@@ -4,8 +4,10 @@
 
   * Windows
       * Instalar o gerenciador de pacotes [Chocolatey](https://chocolatey.org/) 
-
-         `@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` (rodar em prompt de comando com permissão de administrador)
+      
+         Para instalar rodar o comando abaixo em um prompt de comando com permissão de administrador:
+         
+         `@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"` 
 
       * Instalar [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 
 
